@@ -1,0 +1,111 @@
+name: BibleBERT evaluation
+project: bible-bert-eval-century
+program: bible_eval.py
+command:
+  - ${env}
+  - ${interpreter}
+  - ${program}
+  - ${args}
+method: grid
+metric:
+  name: eval:f1_macro
+  goal: maximize
+parameters:
+  dataset_name:
+    value: versae/bibles
+  dataset_config:
+    values:
+      - testament
+      - genre
+      - division
+  dataset_language:
+    values:
+      # - all
+      # - ALB
+      # - ARA
+      # - AZB
+      # - BEL
+      # - BUL
+      # - CEB
+      # - CHI
+      # - CZE
+      # - DAN
+      # - ENG
+      # - ESP
+      # - FIN
+      # - FRE
+      # - GER
+      # - GRC
+      # - HAT
+      # - HEB
+      # - HIN
+      # - HUN
+      # - ITA
+      # - KOR
+      # - LAT
+      # - MAR
+      # - NL_
+      # - NOR
+      # - POR
+      # - RUM
+      # - RUS
+      # - SCR
+      # - SPA
+      # - SWE
+      # - TAM
+      # - TGL
+      # - THA
+      # - TUR
+      # - VIE
+      # - XKL
+      - BUL
+      - CHA
+      # - DAN
+      # - ENG
+      # - FIN
+      - FRE
+      - GER
+      - GRC
+      # - ITA
+      # - LAT
+      # - POR
+      # - RUM
+      - RUS
+      # - SPA
+      # - SWE
+      # - VIE
+  dataset_century:
+    values:
+      # - all
+      # - 15th-18th
+      - 2ndBC-15th
+      - 16th
+      - 17th
+      - 18th
+      - 19th
+      - 20th
+      - 21st
+  task_name:
+    value: sequence
+  model_name:
+    value: bert-base-multilingual-cased
+  # force_download:
+  #   value: true
+  num_train_epochs:
+    value: 3
+  # warmup_steps:
+  #   value: 0.1
+  weight_decay:
+    value: 0.0
+  learning_rate:
+    value: 3e-5
+  train_batch_size:
+    value: 8
+  cache_dir:
+    value: ./cache
+  output_dir:
+    value: ./output
+  save_artifacts:
+    value: true
+  # run:
+  #   values: [1, 2, 3]
